@@ -1,0 +1,14 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.cmii.cmiicore.mixin.botania",
+    "compatibilityLevel": "JAVA_8",
+    "refmap": "mixins.cmiicore.refmap.json",
+    "mixins": [
+        "MixinBotaniaAPI",
+        "MixinGardenOfGlass",
+        "MixinSubTileLoonuim"
+    ],
+    "client": [],
+    "server": []
+}

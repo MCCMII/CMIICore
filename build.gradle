@@ -26,7 +26,6 @@ plugins {
     id 'com.gradleup.shadow' version '9.4.0'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.4.1'
     id 'xyz.wagyourtail.unimined' version '1.4.17-kappa'
-    id 'net.kyori.blossom' version '2.2.0'
 }
 
 import org.jetbrains.gradle.ext.Gradle
@@ -142,29 +141,6 @@ processResources {
     rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
-sourceSets {
-    main {
-        blossom {
-            javaSources {
-                property('mod_id', propertyString('mod_id'))
-                property('mod_name', propertyString('mod_name'))
-                property('mod_version', propertyString('mod_version'))
-                property('package', "${root_package}.${mod_id}")
-            }
-            resources {
-                property('mod_id', propertyString('mod_id'))
-                property('mod_name', propertyString('mod_name'))
-                property('mod_version', propertyString('mod_version'))
-                property('mod_description', propertyString('mod_description'))
-                property('mod_authors', propertyStringList('mod_authors', ',').collect {it.strip()}.join('", "'))
-                property('mod_credits', propertyString('mod_credits'))
-                property('mod_url', propertyString('mod_url'))
-                property('mod_update_json', propertyString('mod_update_json'))
-                property('mod_logo_path', propertyString('mod_logo_path'))
-            }
-        }
-    }
-}
 
 idea {
     module {
@@ -228,6 +204,7 @@ jar {
             if (propertyBool('use_access_transformer')) {
                 attribute_map['FMLAT'] = propertyString('access_transformer_locations')
             }
+            attribute_map['MixinConfigs'] = 'mixins.cmiicore.json'
             attributes(attribute_map)
         }
     }

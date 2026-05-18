@@ -1,0 +1,12 @@
+[{
+	"modid": "cmiicore",
+	"name": "CMIICore",
+	"version": "0.1.0",
+	"mcversion": "1.12.2",
+	"description": "Core mod for the CMII modpack.",
+	"authorList": ["CMII"],
+	"credits": "",
+	"url": "",
+	"updateJSON": "",
+	"logoFile": ""
+}]
