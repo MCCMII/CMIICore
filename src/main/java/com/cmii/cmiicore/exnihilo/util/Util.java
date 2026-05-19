@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.BiPredicate;
@@ -162,6 +164,13 @@ public class Util {
         }
     }
 
+    public static Color getColorFromFluid(Fluid fluid) {
+        if (fluid == null) {
+            return Color.INVALID_COLOR;
+        }
+        return new Color(fluid.getColor(), true);
+    }
+
     public static float weightedAverage(float a, float b, float percent) {
         return a * percent + b * (1 - percent);
     }
@@ -230,5 +239,20 @@ public class Util {
             n++;
         }
         return n;
+    }
+
+    public static void setSlimeSize(EntitySlime slime, int size, boolean resetHealth) {
+        try {
+            Method method;
+            try {
+                method = EntitySlime.class.getDeclaredMethod("setSlimeSize", int.class, boolean.class);
+            } catch (NoSuchMethodException ignored) {
+                method = EntitySlime.class.getDeclaredMethod("func_70799_a", int.class, boolean.class);
+            }
+            method.setAccessible(true);
+            method.invoke(slime, size, resetHealth);
+        } catch (ReflectiveOperationException e) {
+            LogUtil.error("Could not set slime size", e);
+        }
     }
 }

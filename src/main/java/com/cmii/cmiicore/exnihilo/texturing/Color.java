@@ -5,27 +5,31 @@ import java.util.Objects;
 public class Color {
     public static final Color INVALID_COLOR = new Color(-1, -1, -1, -1);
 
-    private final float red;
-    private final float green;
-    private final float blue;
-    private final float alpha;
+    public final float r;
+    public final float g;
+    public final float b;
+    public final float a;
 
     public Color(float red, float green, float blue, float alpha) {
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
-        this.alpha = alpha;
+        this.r = red;
+        this.g = green;
+        this.b = blue;
+        this.a = alpha;
+    }
+
+    public Color(int red, int green, int blue) {
+        this(red / 255f, green / 255f, blue / 255f, 1f);
     }
 
     public Color(int color) {
-        this(color, false);
+        this(color, true);
     }
 
     public Color(int color, boolean ignoreAlpha) {
-        this.red = ((color >> 16) & 255) / 255f;
-        this.green = ((color >> 8) & 255) / 255f;
-        this.blue = (color & 255) / 255f;
-        this.alpha = ignoreAlpha ? 1f : ((color >> 24) & 255) / 255f;
+        this.r = ((color >> 16) & 255) / 255f;
+        this.g = ((color >> 8) & 255) / 255f;
+        this.b = (color & 255) / 255f;
+        this.a = ignoreAlpha ? 1f : ((color >> 24) & 255) / 255f;
     }
 
     public Color(String hex) {
@@ -41,39 +45,39 @@ public class Color {
     }
 
     public float getRed() {
-        return red;
+        return r;
     }
 
     public float getGreen() {
-        return green;
+        return g;
     }
 
     public float getBlue() {
-        return blue;
+        return b;
     }
 
     public float getAlpha() {
-        return alpha;
+        return a;
     }
 
     public boolean shouldApplyColor() {
-        return red != -1 && green != -1 && blue != -1;
+        return r != -1 && g != -1 && b != -1;
     }
 
     public int toInt() {
         int color = 0;
-        color |= (int) (this.alpha * 255) << 24;
-        color |= (int) (this.red * 255) << 16;
-        color |= (int) (this.green * 255) << 8;
-        color |= (int) (this.blue * 255);
+        color |= (int) (this.a * 255) << 24;
+        color |= (int) (this.r * 255) << 16;
+        color |= (int) (this.g * 255) << 8;
+        color |= (int) (this.b * 255);
         return color;
     }
 
     public int toIntNoAlpha() {
         int color = 0;
-        color |= (int) (this.red * 255) << 16;
-        color |= (int) (this.green * 255) << 8;
-        color |= (int) (this.blue * 255);
+        color |= (int) (this.r * 255) << 16;
+        color |= (int) (this.g * 255) << 8;
+        color |= (int) (this.b * 255);
         return color;
     }
 
@@ -86,24 +90,24 @@ public class Color {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Color color = (Color) o;
-        return Float.compare(color.red, red) == 0
-                && Float.compare(color.green, green) == 0
-                && Float.compare(color.blue, blue) == 0
-                && Float.compare(color.alpha, alpha) == 0;
+        return Float.compare(color.r, r) == 0
+                && Float.compare(color.g, g) == 0
+                && Float.compare(color.b, b) == 0
+                && Float.compare(color.a, a) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(red, green, blue, alpha);
+        return Objects.hash(r, g, b, a);
     }
 
     @Override
     public String toString() {
         return "Color{" +
-                "r=" + red +
-                ", g=" + green +
-                ", b=" + blue +
-                ", a=" + alpha +
+                "r=" + r +
+                ", g=" + g +
+                ", b=" + b +
+                ", a=" + a +
                 '}';
     }
 }

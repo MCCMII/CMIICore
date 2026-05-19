@@ -5,6 +5,7 @@ import com.cmii.cmiicore.api.SubTilePurifyingFlower;
 import com.cmii.cmiicore.exnihilo.ModBlocks;
 import com.cmii.cmiicore.exnihilo.ModItems;
 import com.cmii.cmiicore.exnihilo.ModFluids;
+import com.cmii.cmiicore.exnihilo.capabilities.ENCapabilities;
 import com.cmii.cmiicore.exnihilo.config.ModConfig;
 import com.cmii.cmiicore.exnihilo.registries.manager.ExNihiloRegistryManager;
 import com.cmii.cmiicore.exnihilo.util.Data;
@@ -28,6 +29,7 @@ import java.io.File;
 
 @Mod.EventBusSubscriber
 public class CommonProxy implements IProxy {
+    private File configDirectory;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -46,6 +48,8 @@ public class CommonProxy implements IProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
+        configDirectory = event.getModConfigurationDirectory();
+        ENCapabilities.init();
         ModFluids.init();
 
         ModBlocks.touch();
@@ -55,7 +59,7 @@ public class CommonProxy implements IProxy {
     public void init(FMLInitializationEvent event) {
         ModConfig.loadConfigs();
         ExNihiloRegistryManager.loadAllRegistries(new File(
-                event.getModConfigurationDirectory(), "cmiicore/exnihilo"));
+                configDirectory, "cmiicore/exnihilo"));
     }
 
     @Override

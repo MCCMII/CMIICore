@@ -4,6 +4,7 @@ import com.cmii.cmiicore.Reference;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableStatic;
+import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
@@ -47,8 +48,9 @@ public class CrucibleHeatSourceRecipeCategory implements IRecipeCategory<HeatSou
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull HeatSourcesRecipe recipeWrapper, @Nonnull IIngredients ingredients) {
-        recipeLayout.getItemStacks().init(0, true, 0, 40);
-        recipeLayout.getItemStacks().set(0, ingredients.getInputs(net.minecraft.item.ItemStack.class));
+        IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
+        itemStacks.init(0, true, 0, 40);
+        itemStacks.set(ingredients);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.cmii.cmiicore.exnihilo.items;
 import com.cmii.cmiicore.exnihilo.CreativeTabExNihilo;
 import com.cmii.cmiicore.exnihilo.util.Data;
 import com.cmii.cmiicore.exnihilo.util.IHasModel;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 

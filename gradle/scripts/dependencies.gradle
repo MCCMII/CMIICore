@@ -24,6 +24,13 @@ repositories {
             includeGroup 'maven.modrinth'
         }
     }
+    maven {
+        name = 'Thiakil'
+        url = 'https://maven.thiakil.com'
+        content {
+            includeGroup 'com.azanor.baubles'
+        }
+    }
     mavenCentral()
     mavenLocal() // Must be last for caching to work
 }
@@ -50,13 +57,17 @@ dependencies {
     modCompileOnly "curse.maven:botania-225643:3330934"
     modRuntimeOnly "curse.maven:botania-225643:3330934"
 
+    // Had Enough Items for 1.12.2
+    modCompileOnly "curse.maven:had-enough-items-557549:4543375"
+    modRuntimeOnly "curse.maven:had-enough-items-557549:4543375"
+
     // Thaumcraft 6 Beta26 for 1.12.2
-    modCompileOnly "curse.maven:thaumcraft-223628:2516790"
-    modRuntimeOnly "curse.maven:thaumcraft-223628:2516790"
+    modCompileOnly "curse.maven:thaumcraft-223628:2629023"
+    modRuntimeOnly "curse.maven:thaumcraft-223628:2629023"
 
     // Baubles 1.5.2 (required by Thaumcraft 6)
-    modCompileOnly "curse.maven:baubles-227083:2535468"
-    modRuntimeOnly "curse.maven:baubles-227083:2535468"
+    modCompileOnly "com.azanor.baubles:Baubles:1.12-1.5.2"
+    modRuntimeOnly "com.azanor.baubles:Baubles:1.12-1.5.2"
 
     // Common dependency types (configuration):
     // implementation = dependency available at both compile time and runtime

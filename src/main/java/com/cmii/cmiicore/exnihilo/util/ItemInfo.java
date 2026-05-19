@@ -167,6 +167,16 @@ public class ItemInfo implements StackInfo {
         return isWildcard;
     }
 
+    @Nonnull
+    public Item getItem() {
+        return item;
+    }
+
+    @Nullable
+    public NBTTagCompound getNbt() {
+        return nbt;
+    }
+
     public static ItemInfo readFromNBT(NBTTagCompound tag) {
         Item itemLocal = ForgeRegistries.ITEMS.getValue(new ResourceLocation(tag.getString("item")));
         int metaLocal = tag.getInteger("meta");

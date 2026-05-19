@@ -4,6 +4,7 @@ import com.cmii.cmiicore.exnihilo.ModFluids;
 import com.cmii.cmiicore.exnihilo.config.ModConfig;
 import com.cmii.cmiicore.exnihilo.registries.manager.ExNihiloRegistryManager;
 import com.cmii.cmiicore.exnihilo.util.Data;
+import com.cmii.cmiicore.exnihilo.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -60,7 +61,7 @@ public class BlockFluidWitchwater extends BlockFluidClassic {
         } else if (entity instanceof EntitySlime && !(entity instanceof EntityMagmaCube)) {
             EntitySlime slime = (EntitySlime) entity;
             EntityMagmaCube newEntity = new EntityMagmaCube(world);
-            newEntity.setSlimeSize(slime.getSlimeSize(), true);
+            Util.setSlimeSize(newEntity, slime.getSlimeSize(), true);
             replaceMob(world, slime, newEntity);
         } else if (entity instanceof EntitySpider && !(entity instanceof EntityCaveSpider)) {
             replaceMob(world, (EntityLivingBase) entity, new EntityCaveSpider(world));

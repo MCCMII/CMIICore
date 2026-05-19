@@ -70,7 +70,7 @@ public class BlockBarrel extends BlockBase implements ITileEntityProvider {
                 BarrelModeBlock mode = (BarrelModeBlock) tile.getMode();
 
                 if (mode.getBlock() != null) {
-                    return Block.getBlockFromItem(mode.getBlock().getItem()).getStateFromMeta(mode.getBlock().getMeta()).getLightValue();
+                    return mode.getBlock().getBlockState().getLightValue();
                 }
             } else if (tile.getMode() instanceof BarrelModeFluid) {
                 BarrelModeFluid mode = (BarrelModeFluid) tile.getMode();

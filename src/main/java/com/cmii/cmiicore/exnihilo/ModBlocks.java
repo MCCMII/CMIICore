@@ -6,6 +6,7 @@ import com.cmii.cmiicore.exnihilo.util.IHasModel;
 import com.cmii.cmiicore.exnihilo.util.IHasSpecialRegistry;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,7 +17,8 @@ public class ModBlocks {
 
     public static final BlockInfestingLeaves infestingLeaves = new BlockInfestingLeaves();
     public static final BlockInfestedLeaves infestedLeaves = new BlockInfestedLeaves();
-    public static final BlockBarrel barrel = new BlockBarrel();
+    public static final BlockBarrel barrelWood = new BlockBarrel(0, Material.WOOD);
+    public static final BlockBarrel barrel = barrelWood;
     public static final BlockCrucibleStone crucibleStone = new BlockCrucibleStone();
     public static final BlockCrucibleWood crucibleWood = new BlockCrucibleWood();
 

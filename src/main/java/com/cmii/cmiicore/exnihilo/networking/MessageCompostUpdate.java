@@ -126,8 +126,8 @@ public class MessageCompostUpdate implements IMessage {
                             // A new item is getting added or the Color has been desynced.
                             Color compColor = msg.color;
                             // Dynamic color on invalid_color
-                            if (compColor == Color.INVALID_COLOR) {
-                                compColor = ColorGetter.getColor(stack);
+                            if (compColor.equals(Color.INVALID_COLOR) && !msg.stack.isEmpty()) {
+                                compColor = ColorGetter.getColor(msg.stack);
                             }
                             if (msg.fillAmount == 0 || msg.isFirst) {
                                 mode.setColor(compColor);

@@ -22,6 +22,8 @@ public class ModConfig {
     }
 
     public static final Misc misc = new Misc();
+    @Config.Comment("These configs can be changed client-side without causing server connection problems.")
+    public static final Client client = new Client();
     public static final Mechanics mechanics = new Mechanics();
     public static final Composting composting = new Composting();
     public static final InfestedLeaves infested_leaves = new InfestedLeaves();
@@ -55,6 +57,11 @@ public class ModConfig {
 
         @Config.Comment({"Possible results of using a rubber seed."})
         public String[] rubberSeeds = {"techreborn:rubber_sapling", "ic2:sapling"};
+    }
+
+    public static class Client {
+        @Config.Comment("This enables the thin crucible model which is similar to the one in the 1.7 Ex Nihilo.")
+        public boolean thinCrucibleModel = false;
     }
 
     // --- Mechanics ---

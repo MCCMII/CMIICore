@@ -43,7 +43,8 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
         registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName()));
     }
 
-    public String getFLuidForTransformation(@NotNull Fluid fluid, @NotNull ItemStack stack) {
+    @Override
+    public String getFluidForTransformation(@NotNull Fluid fluid, @NotNull ItemStack stack) {
         ItemInfo info = new ItemInfo(stack);
 
         for (FluidItemFluid transformer : registry) {
@@ -53,6 +54,10 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
         }
 
         return null;
+    }
+
+    public String getFLuidForTransformation(@NotNull Fluid fluid, @NotNull ItemStack stack) {
+        return getFluidForTransformation(fluid, stack);
     }
 
     @Override

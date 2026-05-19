@@ -1,6 +1,5 @@
 package com.cmii.cmiicore.exnihilo.client.color;
 
-import com.cmii.cmiicore.exnihilo.texturing.Color;
 import com.cmii.cmiicore.exnihilo.util.ItemInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -42,10 +41,10 @@ public final class ColorGetter {
 
     }
 
-    public static final HashMap<ItemInfo, Color> colorCache = new HashMap<>();
+    public static final HashMap<ItemInfo, com.cmii.cmiicore.exnihilo.texturing.Color> colorCache = new HashMap<>();
 
-    public static Color getColor(ItemStack stack) {
-        if (stack.isEmpty()) return Color.INVALID_COLOR;
+    public static com.cmii.cmiicore.exnihilo.texturing.Color getColor(ItemStack stack) {
+        if (stack.isEmpty()) return com.cmii.cmiicore.exnihilo.texturing.Color.INVALID_COLOR;
         ItemInfo info = new ItemInfo(stack);
 
         if (colorCache.containsKey(info)) {
@@ -54,14 +53,14 @@ public final class ColorGetter {
             List<java.awt.Color> color = ColorGetter.getColors(stack, 1);
             if (color.size() > 0) {
                 java.awt.Color domColor = color.get(0);
-                Color exColor = new Color(domColor.getRGB());
+                com.cmii.cmiicore.exnihilo.texturing.Color exColor = new com.cmii.cmiicore.exnihilo.texturing.Color(domColor.getRGB());
                 colorCache.put(info, exColor);
 
                 return exColor;
             }
         }
 
-        return Color.INVALID_COLOR;
+        return com.cmii.cmiicore.exnihilo.texturing.Color.INVALID_COLOR;
     }
 
     public static List<Color> getColors(ItemStack itemStack, int colorCount) {

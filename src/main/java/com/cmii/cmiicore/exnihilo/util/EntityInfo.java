@@ -39,7 +39,7 @@ public class EntityInfo {
                 EntityLiving entityLiving = (EntityLiving) entity;
 
                 if (entityLiving instanceof EntitySlime) {
-                    ((EntitySlime) entityLiving).setSlimeSize(1, true);
+                    Util.setSlimeSize((EntitySlime) entityLiving, 1, true);
                 }
 
                 double dx = (worldIn.rand.nextDouble() - worldIn.rand.nextDouble()) * range + 0.5;

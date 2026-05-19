@@ -24,9 +24,5 @@ public class ModFluids {
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        if (fluidWitchwater != null) {
-            fluidWitchwater.setStill(new ResourceLocation(Reference.MOD_ID, "blocks/witchwater_still"));
-            fluidWitchwater.setFlowing(new ResourceLocation(Reference.MOD_ID, "blocks/witchwater_flow"));
-        }
     }
 }
