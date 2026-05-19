@@ -2,29 +2,73 @@ package com.cmii.cmiicore.proxy;
 
 import com.cmii.cmiicore.api.LoonuimExtraProducts;
 import com.cmii.cmiicore.api.SubTilePurifyingFlower;
+import com.cmii.cmiicore.exnihilo.ModBlocks;
+import com.cmii.cmiicore.exnihilo.ModItems;
+import com.cmii.cmiicore.exnihilo.ModFluids;
+import com.cmii.cmiicore.exnihilo.config.ModConfig;
+import com.cmii.cmiicore.exnihilo.registries.manager.ExNihiloRegistryManager;
+import com.cmii.cmiicore.exnihilo.util.Data;
+import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.subtile.signature.BasicSignature;
 
+import java.io.File;
+
+@Mod.EventBusSubscriber
 public class CommonProxy implements IProxy {
+
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        ModBlocks.registerBlocks(event.getRegistry());
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+        ModItems.registerItems(event.getRegistry());
+    }
+
+    @SubscribeEvent
+    public static void onRecipeRegistry(RegistryEvent.Register<IRecipe> e) {
+        e.getRegistry().registerAll(Data.RECIPES.toArray(new IRecipe[0]));
+    }
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
+        ModFluids.init();
+
+        ModBlocks.touch();
     }
 
     @Override
     public void init(FMLInitializationEvent event) {
+        ModConfig.loadConfigs();
+        ExNihiloRegistryManager.loadAllRegistries(new File(
+                event.getModConfigurationDirectory(), "cmiicore/exnihilo"));
     }
 
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         registerTC6LootBags();
         registerPurifyingFlower();
+    }
+
+    public void registerModels(ModelRegistryEvent event) {
+    }
+
+    public boolean runningOnServer() {
+        return true;
     }
 
     /**

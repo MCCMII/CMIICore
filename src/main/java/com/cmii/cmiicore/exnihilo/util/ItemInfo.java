@@ -1,0 +1,287 @@
+package com.cmii.cmiicore.exnihilo.util;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.nbt.NBTException;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+public class ItemInfo implements StackInfo {
+
+    public static final ItemInfo EMPTY = new ItemInfo(ItemStack.EMPTY);
+
+    @Nonnull
+    private final Item item;
+
+    private int meta = 0;
+
+    @Nullable
+    private NBTTagCompound nbt = null;
+
+    private boolean isWildcard = false;
+
+    public ItemInfo(@Nonnull Item item) {
+        this.item = item;
+        checkWildcard();
+    }
+
+    public ItemInfo(@Nonnull Item item, int meta) {
+        this.item = item;
+        if (meta == -1 || meta == OreDictionary.WILDCARD_VALUE) {
+            this.isWildcard = true;
+        } else {
+            this.meta = meta;
+            checkWildcard();
+        }
+    }
+
+    public ItemInfo(@Nonnull ItemStack stack) {
+        this.item = stack.getItem();
+        this.meta = stack.getItemDamage();
+        this.nbt = stack.getTagCompound();
+        checkWildcard();
+    }
+
+    public ItemInfo(@Nonnull Block block) {
+        this.item = Item.getItemFromBlock(block);
+        checkWildcard();
+    }
+
+    public ItemInfo(@Nonnull Block block, int blockMeta) {
+        this(block, blockMeta, null);
+    }
+
+    public ItemInfo(@Nonnull Block block, int blockMeta, @Nullable NBTTagCompound tag) {
+        this(Item.getItemFromBlock(block), blockMeta, tag);
+    }
+
+    public ItemInfo(@Nonnull Item item, int meta, @Nullable NBTTagCompound tag) {
+        this.item = item;
+        if (tag != null)
+            this.nbt = tag.copy();
+        if (this.item == Items.AIR) {
+            this.isWildcard = true;
+        } else {
+            if (meta == -1 || meta == OreDictionary.WILDCARD_VALUE) {
+                this.isWildcard = true;
+            } else {
+                this.meta = meta;
+                checkWildcard();
+            }
+        }
+    }
+
+    public ItemInfo(@Nonnull Item item, int meta, @Nonnull String tag) {
+        this.item = item;
+        if (this.item == Items.AIR) {
+            this.isWildcard = true;
+        } else {
+            if (meta == -1 || meta == OreDictionary.WILDCARD_VALUE) {
+                this.isWildcard = true;
+            } else {
+                this.meta = meta;
+                checkWildcard();
+            }
+        }
+        try {
+            this.nbt = JsonToNBT.getTagFromJson(tag);
+        } catch (NBTException e) {
+            LogUtil.error("Could not parse NBTTag: " + tag);
+            this.nbt = new NBTTagCompound();
+        }
+    }
+
+    public ItemInfo(@Nonnull String string) {
+        if (string.isEmpty() || string.length() < 2) {
+            this.item = Items.AIR;
+            this.isWildcard = true;
+            return;
+        }
+        String[] split = string.split(":");
+
+        Item itemLocal = null;
+        int metaLocal = 0;
+
+        switch (split.length) {
+            case 1:
+                itemLocal = Item.getByNameOrId("minecraft:" + split[0]);
+                break;
+            case 2:
+                try {
+                    metaLocal = split[1].equals("*") ? -1 : Integer.parseInt(split[1]);
+                    itemLocal = Item.getByNameOrId("minecraft:" + split[0]);
+                } catch (NumberFormatException e) {
+                    this.isWildcard = true;
+                    metaLocal = 0;
+                    itemLocal = Item.getByNameOrId(split[0] + ":" + split[1]);
+                }
+                break;
+            case 3:
+                try {
+                    metaLocal = split[2].equals("*") ? -1 : Integer.parseInt(split[2]);
+                    itemLocal = Item.getByNameOrId(split[0] + ":" + split[1]);
+                } catch (NumberFormatException e) {
+                    metaLocal = 0;
+                    this.isWildcard = true;
+                }
+                break;
+            default:
+                this.item = Items.AIR;
+                this.isWildcard = true;
+                return;
+        }
+
+        if (itemLocal == null) {
+            this.item = Items.AIR;
+            this.isWildcard = true;
+        } else {
+            this.item = itemLocal;
+            if (metaLocal == -1 || metaLocal == OreDictionary.WILDCARD_VALUE) {
+                this.isWildcard = true;
+            } else {
+                this.meta = metaLocal;
+                checkWildcard();
+            }
+        }
+    }
+
+    public ItemInfo(@Nonnull IBlockState state) {
+        item = Item.getItemFromBlock(state.getBlock());
+        meta = state.getBlock().getMetaFromState(state);
+    }
+
+    public boolean isWildcard() {
+        return isWildcard;
+    }
+
+    public static ItemInfo readFromNBT(NBTTagCompound tag) {
+        Item itemLocal = ForgeRegistries.ITEMS.getValue(new ResourceLocation(tag.getString("item")));
+        int metaLocal = tag.getInteger("meta");
+        if (tag.hasKey("nbt")) {
+            return itemLocal == null ? EMPTY : new ItemInfo(itemLocal, metaLocal, tag.getCompoundTag("nbt"));
+        }
+        return itemLocal == null ? EMPTY : new ItemInfo(itemLocal, metaLocal);
+    }
+
+    private void checkWildcard() {
+        NonNullList<ItemStack> subItems = NonNullList.create();
+        item.getSubItems(item.getCreativeTab() == null ? CreativeTabs.SEARCH : item.getCreativeTab(), subItems);
+        if (subItems.size() <= 1)
+            this.isWildcard = true;
+    }
+
+    @Override
+    public String toString() {
+        return ForgeRegistries.ITEMS.getKey(item) + (meta == 0 ? "" : (":" + meta));
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getItemStack() {
+        if (item == Items.AIR)
+            return ItemStack.EMPTY;
+        ItemStack stack = new ItemStack(item, 1, meta);
+        if (nbt != null)
+            stack.setTagCompound(nbt);
+
+        return stack;
+    }
+
+    @Override
+    public boolean hasBlock() {
+        return item instanceof ItemBlock;
+    }
+
+    @Nonnull
+    @Override
+    public Block getBlock() {
+        return Block.getBlockFromItem(item);
+    }
+
+    @Nonnull
+    @Override
+    public IBlockState getBlockState() {
+        if (item == Items.AIR)
+            return Blocks.AIR.getDefaultState();
+        try {
+            //noinspection deprecation
+            return Block.getBlockFromItem(item).getStateFromMeta(meta);
+        } catch (Exception e) {
+            return Block.getBlockFromItem(item).getDefaultState();
+        }
+    }
+
+    @Override
+    public int getMeta() {
+        return isWildcard ? -1 : meta;
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+        ResourceLocation key = ForgeRegistries.ITEMS.getKey(item);
+        tag.setString("item", key == null ? "" : key.toString());
+        tag.setInteger("meta", meta);
+        if (nbt != null && !this.nbt.isEmpty()) {
+            tag.setTag("nbt", this.nbt);
+        }
+        return tag;
+    }
+
+    @Override
+    public boolean isValid() {
+        return this.item != Items.AIR && meta <= OreDictionary.WILDCARD_VALUE;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.item.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (isWildcard) {
+            if (obj instanceof ItemInfo)
+                return ItemStack.areItemsEqualIgnoreDurability(((ItemInfo) obj).getItemStack(), getItemStack());
+            else if (obj instanceof ItemStack)
+                return ItemStack.areItemsEqualIgnoreDurability((ItemStack) obj, getItemStack());
+            else if (obj instanceof BlockInfo)
+                return ItemStack.areItemsEqualIgnoreDurability(((BlockInfo) obj).getItemStack(), getItemStack());
+            else if (obj instanceof Block) {
+                BlockInfo block = new BlockInfo((Block) obj);
+                return ItemStack.areItemsEqualIgnoreDurability(block.getItemStack(), getItemStack());
+            } else if (obj instanceof Item) {
+                ItemInfo itemInfo = new ItemInfo((Item) obj);
+                return ItemStack.areItemsEqualIgnoreDurability(itemInfo.getItemStack(), getItemStack());
+            }
+        } else {
+            if (obj instanceof ItemInfo)
+                return ItemStack.areItemStacksEqual(((ItemInfo) obj).getItemStack(), getItemStack());
+            else if (obj instanceof ItemStack)
+                return ItemStack.areItemStacksEqual((ItemStack) obj, getItemStack());
+            else if (obj instanceof BlockInfo)
+                return ItemStack.areItemStacksEqual(((BlockInfo) obj).getItemStack(), getItemStack());
+            else if (obj instanceof Block) {
+                BlockInfo block = new BlockInfo((Block) obj);
+                return ItemStack.areItemStacksEqual(block.getItemStack(), getItemStack());
+            } else if (obj instanceof Item) {
+                ItemInfo itemInfo = new ItemInfo((Item) obj);
+                return ItemStack.areItemStacksEqual(itemInfo.getItemStack(), getItemStack());
+            }
+        }
+
+        return false;
+    }
+}

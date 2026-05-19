@@ -1,0 +1,29 @@
+package com.cmii.cmiicore.exnihilo.items;
+
+import com.cmii.cmiicore.exnihilo.CreativeTabExNihilo;
+import com.cmii.cmiicore.exnihilo.util.Data;
+import com.cmii.cmiicore.exnihilo.util.IHasModel;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
+
+public class ItemBlockMeta extends ItemBlock implements IHasModel {
+
+    public ItemBlockMeta(Block block) {
+        super(block);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
+        this.setRegistryName(block.getRegistryName());
+    }
+
+    public int getMetadata(int damage) {
+        return damage;
+    }
+
+    @Override
+    @Nonnull
+    public String getTranslationKey(ItemStack stack) {
+        return super.getTranslationKey(stack) + "." + stack.getItemDamage();
+    }
+}
