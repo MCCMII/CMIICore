@@ -61,6 +61,12 @@ dependencies {
     modCompileOnly "curse.maven:had-enough-items-557549:4543375"
     modRuntimeOnly "curse.maven:had-enough-items-557549:4543375"
 
+    // Fugue compatibility patches for Cleanroom runtime
+    modRuntimeOnly "curse.maven:fugue-1005815:7853971"
+    // scalar compatibility patches for Cleanroom runtime
+    modRuntimeOnly "curse.maven:scalar-legacy-1235372:6842491"
+    runtimeOnly "org.scala-lang:scala-library:2.11.12"
+
     // Thaumcraft 6 Beta26 for 1.12.2
     modCompileOnly "curse.maven:thaumcraft-223628:2629023"
     modRuntimeOnly "curse.maven:thaumcraft-223628:2629023"
