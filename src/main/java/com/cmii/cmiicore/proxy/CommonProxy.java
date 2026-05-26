@@ -14,7 +14,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -66,9 +65,6 @@ public class CommonProxy implements IProxy {
     public void postInit(FMLPostInitializationEvent event) {
         registerTC6LootBags();
         registerPurifyingFlower();
-    }
-
-    public void registerModels(ModelRegistryEvent event) {
     }
 
     public boolean runningOnServer() {

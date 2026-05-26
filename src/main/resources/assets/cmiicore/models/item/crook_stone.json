@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "cmiicore:items/tools/crook/crook_stone"
+  }
+}

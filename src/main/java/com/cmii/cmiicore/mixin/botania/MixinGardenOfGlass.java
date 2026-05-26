@@ -22,7 +22,7 @@ public class MixinGardenOfGlass {
      * from spawning a Blaze when placed on iron bars.
      * The method checked for iron bars below and spawned an EntityBlaze.
      */
-    @Inject(method = "func_176213_c", at = @At("HEAD"), cancellable = true, remap = false)
+    @Inject(method = "onBlockAdded", at = @At("HEAD"), cancellable = true, remap = false)
     private void onBlockAdded(World world, BlockPos pos, IBlockState state, CallbackInfo ci) {
         ci.cancel();
     }

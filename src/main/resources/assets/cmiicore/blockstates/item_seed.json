@@ -1,0 +1,66 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "type": {
+      "birch": {
+        "textures": {
+          "layer0": "cmiicore:items/seedbirch"
+        }
+      },
+      "acacia": {
+        "textures": {
+          "layer0": "cmiicore:items/seedacacia"
+        }
+      },
+      "cactus": {
+        "textures": {
+          "layer0": "cmiicore:items/seedcactus"
+        }
+      },
+      "carrot": {
+        "textures": {
+          "layer0": "cmiicore:items/seedcarrot"
+        }
+      },
+      "jungle": {
+        "textures": {
+          "layer0": "cmiicore:items/seedjungle"
+        }
+      },
+      "oak": {
+        "textures": {
+          "layer0": "cmiicore:items/seedoak"
+        }
+      },
+      "potato": {
+        "textures": {
+          "layer0": "cmiicore:items/seedpotato"
+        }
+      },
+      "spruce": {
+        "textures": {
+          "layer0": "cmiicore:items/seedspruce"
+        }
+      },
+      "sugarcane": {
+        "textures": {
+          "layer0": "cmiicore:items/seedsugarcane"
+        }
+      },
+      "darkoak": {
+        "textures": {
+          "layer0": "cmiicore:items/seeddarkoak"
+        }
+      },
+      "rubber": {
+        "textures": {
+          "layer0": "cmiicore:items/seedrubber"
+        }
+      }
+    }
+  }
+}

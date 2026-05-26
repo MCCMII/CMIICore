@@ -1,0 +1,59 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "inventory": [
+      {}
+    ],
+    "type": {
+      "blank": {
+        "textures": {
+          "layer0": "cmiicore:items/doll"
+        }
+      },
+      "blaze": {
+        "textures": {
+          "layer0": "cmiicore:items/dollblaze"
+        }
+      },
+      "enderman": {
+        "textures": {
+          "layer0": "cmiicore:items/dollender"
+        }
+      },
+      "shulker": {
+        "textures": {
+          "layer0": "cmiicore:items/dollshulker"
+        }
+      },
+      "guardian": {
+        "textures": {
+          "layer0": "cmiicore:items/dollguardian"
+        }
+      },
+      "blizz": {
+        "textures": {
+          "layer0": "cmiicore:items/dollblizz"
+        }
+      },
+      "blitz": {
+        "textures": {
+          "layer0": "cmiicore:items/dollblitz"
+        }
+      },
+      "basalz": {
+        "textures": {
+          "layer0": "cmiicore:items/dollbasalz"
+        }
+      },
+      "blueslime": {
+        "textures": {
+          "layer0": "cmiicore:items/dollblueslime"
+        }
+      }
+    }
+  }
+}

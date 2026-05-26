@@ -1,0 +1,47 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cmiicore:block_crucible_big",
+    "textures": {
+      "particle": "cmiicore:blocks/blockcrucible",
+      "top": "cmiicore:blocks/blockcrucible",
+      "bottom": "cmiicore:blocks/blockcrucible",
+      "side": "cmiicore:blocks/blockcrucible",
+      "inside": "cmiicore:blocks/blockcrucible"
+    }
+  },
+  "variants": {
+    "fired=true,thin=true": {
+      "model": "cmiicore:block_crucible_thin"
+    },
+    "fired=true,thin=false": {
+      "model": "cmiicore:block_crucible_big"
+    },
+    "fired=false,thin=true": {
+      "model": "cmiicore:block_crucible_thin",
+      "textures": {
+        "particle": "cmiicore:blocks/blockcrucibleunfired",
+        "top": "cmiicore:blocks/blockcrucibleunfired",
+        "bottom": "cmiicore:blocks/blockcrucibleunfired",
+        "side": "cmiicore:blocks/blockcrucibleunfired",
+        "inside": "cmiicore:blocks/blockcrucibleunfired"
+      }
+    },
+    "fired=false,thin=false": {
+      "model": "cmiicore:block_crucible_big",
+      "textures": {
+        "particle": "cmiicore:blocks/blockcrucibleunfired",
+        "top": "cmiicore:blocks/blockcrucibleunfired",
+        "bottom": "cmiicore:blocks/blockcrucibleunfired",
+        "side": "cmiicore:blocks/blockcrucibleunfired",
+        "inside": "cmiicore:blocks/blockcrucibleunfired"
+      }
+    },
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
+  }
+}

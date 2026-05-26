@@ -89,7 +89,7 @@ public class MixinSubTileLoonuim {
         method = "onUpdate",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/world/World;func_72838_d(Lnet/minecraft/entity/Entity;)Z"
+            target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"
         )
     )
     private boolean redirectMobSpawnToItemDrop(World world, Entity entity) {
