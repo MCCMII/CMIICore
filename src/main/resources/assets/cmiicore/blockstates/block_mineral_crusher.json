@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cmiicore:block_mineral_crusher",
+        "textures": {
+            "all": "cmiicore:blocks/block_mineral_crusher"
+        }
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

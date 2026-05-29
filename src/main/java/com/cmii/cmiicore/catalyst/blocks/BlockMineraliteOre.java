@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class BlockMineraliteOre extends Block implements IHasModel {
 
-    public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 4);
+    public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 5);
 
     public BlockMineraliteOre() {
         super(Material.ROCK);
@@ -55,7 +55,7 @@ public class BlockMineraliteOre extends Block implements IHasModel {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(TYPE, Math.min(Math.max(meta, 0), 4));
+        return getDefaultState().withProperty(TYPE, Math.min(Math.max(meta, 0), 5));
     }
 
     @Override

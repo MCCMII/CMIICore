@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "cmiicore:blocks/block_mineral_crusher"
+    }
+}

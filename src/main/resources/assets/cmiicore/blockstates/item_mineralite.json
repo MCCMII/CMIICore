@@ -10,7 +10,8 @@
       "precious_metal":{ "textures": { "layer0": "cmiicore:items/mineralite_precious_metal" } },
       "gem":           { "textures": { "layer0": "cmiicore:items/mineralite_gem" } },
       "fuel":          { "textures": { "layer0": "cmiicore:items/mineralite_fuel" } },
-      "rare_earth":    { "textures": { "layer0": "cmiicore:items/mineralite_rare_earth" } }
+      "rare_earth":    { "textures": { "layer0": "cmiicore:items/mineralite_rare_earth" } },
+      "essentia":      { "textures": { "layer0": "cmiicore:items/mineralite_essentia" } }
     }
   }
 }

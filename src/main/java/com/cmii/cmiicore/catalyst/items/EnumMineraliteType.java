@@ -8,7 +8,8 @@ public enum EnumMineraliteType {
     PRECIOUS_METAL(1, "precious_metal"),
     GEM(2, "gem"),
     FUEL(3, "fuel"),
-    RARE_EARTH(4, "rare_earth");
+    RARE_EARTH(4, "rare_earth"),
+    ESSENTIA(5, "essentia");
 
     public final int meta;
     public final String name;

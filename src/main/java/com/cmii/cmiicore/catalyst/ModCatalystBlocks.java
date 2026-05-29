@@ -1,6 +1,7 @@
 package com.cmii.cmiicore.catalyst;
 
 import com.cmii.cmiicore.catalyst.blocks.BlockFluidStellarEssence;
+import com.cmii.cmiicore.catalyst.blocks.BlockMineralCrusher;
 import com.cmii.cmiicore.catalyst.blocks.BlockMineraliteOre;
 import com.cmii.cmiicore.exnihilo.util.Data;
 import com.cmii.cmiicore.exnihilo.util.IHasModel;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class ModCatalystBlocks {
 
     public static final BlockMineraliteOre mineraliteOre = new BlockMineraliteOre();
+    public static final BlockMineralCrusher mineralCrusher = new BlockMineralCrusher();
     public static BlockFluidStellarEssence fluidStellarEssence;
 
     public static final Map<Block, Integer> ORE_TO_MINERALITE_META = new HashMap<>();
@@ -33,6 +35,8 @@ public class ModCatalystBlocks {
         ORE_TO_MINERALITE_META.put(Blocks.EMERALD_ORE, 2);
         // Fuel (3)
         ORE_TO_MINERALITE_META.put(Blocks.COAL_ORE, 3);
+        // Rare (4)
+        ORE_TO_MINERALITE_META.put(Blocks.QUARTZ_ORE, 4);
     }
 
     public static void touch() {
