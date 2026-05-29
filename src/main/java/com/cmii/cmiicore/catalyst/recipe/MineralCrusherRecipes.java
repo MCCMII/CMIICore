@@ -19,23 +19,17 @@ public class MineralCrusherRecipes {
             }
         }
         if (!list.isEmpty()) {
+            removeRecipe(input);
             RECIPES.add(new CrusherRecipe(input, list));
         }
     }
 
-    public static List<ItemStack> getResults(ItemStack input, Random rand) {
-        for (CrusherRecipe recipe : RECIPES) {
-            if (ItemStack.areItemsEqual(recipe.input, input) && ItemStack.areItemStackTagsEqual(recipe.input, input)) {
-                List<ItemStack> results = new ArrayList<>();
-                for (WeightedOutput wo : recipe.outputs) {
-                    if (rand.nextInt(100) < wo.chance) {
-                        results.add(wo.output.copy());
-                    }
-                }
-                return results;
-            }
-        }
-        return Collections.emptyList();
+    public static void removeRecipe(ItemStack input) {
+        RECIPES.removeIf(r -> ItemStack.areItemsEqual(r.input, input));
+    }
+
+    public static int getRecipeCount() {
+        return RECIPES.size();
     }
 
     public static class CrusherRecipe {

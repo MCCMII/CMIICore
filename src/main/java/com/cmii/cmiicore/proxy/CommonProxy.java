@@ -71,13 +71,13 @@ public class CommonProxy implements IProxy {
         ModConfig.loadConfigs();
         ExNihiloRegistryManager.loadAllRegistries(new File(
                 configDirectory, "cmiicore/exnihilo"));
+        registerMineralCrusherDefaults();
     }
 
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         registerTC6LootBags();
         registerPurifyingFlower();
-        registerMineralCrusherDefaults();
     }
 
     private static void registerMineralCrusherDefaults() {
