@@ -1,0 +1,16 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "type": {
+      "base_metal":    { "textures": { "layer0": "cmiicore:items/mineralite_base_metal" } },
+      "precious_metal":{ "textures": { "layer0": "cmiicore:items/mineralite_precious_metal" } },
+      "gem":           { "textures": { "layer0": "cmiicore:items/mineralite_gem" } },
+      "fuel":          { "textures": { "layer0": "cmiicore:items/mineralite_fuel" } },
+      "rare_earth":    { "textures": { "layer0": "cmiicore:items/mineralite_rare_earth" } }
+    }
+  }
+}

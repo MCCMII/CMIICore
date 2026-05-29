@@ -7,7 +7,8 @@
     "mixins": [
         "MixinBotaniaAPI",
         "MixinGardenOfGlass",
-        "MixinSubTileLoonuim"
+        "MixinSubTileLoonuim",
+        "MixinSubTileOrechid"
     ],
     "client": [],
     "server": []

@@ -1,2 +1,23 @@
+# Catalyst - Magic Ignites Industry items
+itemGroup.cmiicore.catalyst=Catalyst
+
+# Mineralite — 5 categories
+item.item_mineralite.base_metal=Base Metal Mineralite
+item.item_mineralite.precious_metal=Precious Metal Mineralite
+item.item_mineralite.gem=Gem Mineralite
+item.item_mineralite.fuel=Fuel Mineralite
+item.item_mineralite.rare_earth=Rare Earth Mineralite
+
+# Meteor Chunk
+item.item_meteor_chunk=Meteor Chunk
+
+# Alchemical Residue
+item.item_alchemical_residue=Alchemical Residue
+
+# Blocks
+tile.block_mineralite_ore=Mineralite Ore
+tile.stellar_essence=Stellar Essence
+
+# Botania flowers (existing)
 botania.flower.cmiicore.purifyingFlower=Purifying Flower
 botania.flower.cmiicore.purifyingFlower.lore=Cleanses Thaumcraft flux from the chunk

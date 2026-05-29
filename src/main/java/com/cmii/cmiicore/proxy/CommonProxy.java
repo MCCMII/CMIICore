@@ -2,6 +2,9 @@ package com.cmii.cmiicore.proxy;
 
 import com.cmii.cmiicore.api.LoonuimExtraProducts;
 import com.cmii.cmiicore.api.SubTilePurifyingFlower;
+import com.cmii.cmiicore.catalyst.ModCatalystBlocks;
+import com.cmii.cmiicore.catalyst.ModCatalystFluids;
+import com.cmii.cmiicore.catalyst.ModCatalystItems;
 import com.cmii.cmiicore.exnihilo.ModBlocks;
 import com.cmii.cmiicore.exnihilo.ModItems;
 import com.cmii.cmiicore.exnihilo.ModFluids;
@@ -50,6 +53,10 @@ public class CommonProxy implements IProxy {
         configDirectory = event.getModConfigurationDirectory();
         ENCapabilities.init();
         ModFluids.init();
+
+        ModCatalystFluids.init();
+        ModCatalystBlocks.touch();
+        ModCatalystItems.touch();
 
         ModBlocks.touch();
     }

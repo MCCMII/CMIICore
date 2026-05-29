@@ -1,2 +1,23 @@
+# Catalyst - Magic Ignites Industry items
+itemGroup.cmiicore.catalyst=催化
+
+# Mineralite (凝华石) — 5 categories
+item.item_mineralite.base_metal=基础金属凝华石
+item.item_mineralite.precious_metal=贵金属凝华石
+item.item_mineralite.gem=宝石凝华石
+item.item_mineralite.fuel=能源凝华石
+item.item_mineralite.rare_earth=稀土凝华石
+
+# Meteor Chunk (陨石碎块)
+item.item_meteor_chunk=陨石碎块
+
+# Alchemical Residue (要素残渣)
+item.item_alchemical_residue=要素残渣
+
+# Blocks
+tile.block_mineralite_ore=凝华矿石
+tile.stellar_essence=星辰精粹
+
+# Botania flowers (existing)
 botania.flower.cmiicore.purifyingFlower=净化花
 botania.flower.cmiicore.purifyingFlower.lore=消耗魔力来净化所在区块的咒波
